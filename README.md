@@ -30,13 +30,12 @@ Things you may want to cover:
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
 | nickname     | string | null: false |
-| email     | string | null: false |
+| email     | string | null: false,unique: true |
 | encrypted_password    | string | null: false |
 | first_name | string | null: false |
 | last_name     | string | null: false |
 | first_name_kana | string | null: false |
 | last_name_kana     | string | null: false |
-| furigana    | string | null: false |
 | birthday | datetime | null: false |
 
 ### Association
@@ -57,10 +56,10 @@ Things you may want to cover:
 | description    | text | null: false |
 | item_status | integer | null: false |
 | delivery_charge     | integer | null: false |
-| delivery_area   | integer | null: false |
+| delivery_area_id   | integer | null: false |
 | delivery_day | integer | null: false |
 | price  | integer | null: false |
-| user_id   | references | null: false,foreign_key: true |
+| user  | references | null: false,foreign_key: true |
 
 
 
@@ -73,8 +72,8 @@ Things you may want to cover:
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
+| item | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -85,9 +84,9 @@ Things you may want to cover:
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| reocord_id   | references | null: false, foreign_key: true |
+| reocord  | references | null: false, foreign_key: true |
 | postal_code | string     | null: false                |
-| delivery_area    | string | null: false |
+| delivery_area_id    | integer | null: false |
 | municipality    | string | null: false |
 | street_number | string     | null: false              |
 | building_name    | string |    |
