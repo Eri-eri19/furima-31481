@@ -29,10 +29,13 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
+| nickname     | string | null: false |
 | email     | string | null: false |
-| password    | string | null: false |
+| encrypted_password    | string | null: false |
 | first_name | string | null: false |
 | last_name     | string | null: false |
+| first_name_kana | string | null: false |
+| last_name_kana     | string | null: false |
 | furigana    | string | null: false |
 | birthday | datetime | null: false |
 
@@ -40,7 +43,7 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :records
-- has_one :address
+
 
 
 
@@ -49,52 +52,49 @@ Things you may want to cover:
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| item_image   | integer | null: false |
 | name     | string | null: false |
 | category_id    | integer | null: false |
-| item_status | string | null: false |
+| description    | text | null: false |
+| item_status | integer | null: false |
 | delivery_charge     | integer | null: false |
-| delivery_area   | string | null: false |
-| delivery_day | date | null: false |
+| delivery_area   | integer | null: false |
+| delivery_day | integer | null: false |
 | price  | integer | null: false |
-| user_id   | integer | null: false |
+| user_id   | references | null: false,foreign_key: true |
 
 
 
 ### Association
 
-- belongs_to :users
-- has_one :records
+- belongs_to :user
+- has_one :record
 
 ## records テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| user_id   | integer | null: false, foreign_key: true |
-| address_id   | integer | null: false, foreign_key: true |
-| item_id   | integer | null: false, foreign_key: true |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :address
-- belongs_to :items
+- belongs_to :user
+- has_one :address
 
 ## address テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user_id   | integer | null: false, foreign_key: true |
+| reocord_id   | references | null: false, foreign_key: true |
 | postal_code | string     | null: false                |
-| prefecture    | string | null: false |
+| delivery_area    | string | null: false |
 | municipality    | string | null: false |
-| street_number | string     |                          |
-| building_name    | string | null: false |
+| street_number | string     | null: false              |
+| building_name    | string |    |
 | phonenumber    | integer | null: false |
 
 
 ### Association
 
-- belongs_to :users
-- belongs_to :records
+- belongs_to :record
 
