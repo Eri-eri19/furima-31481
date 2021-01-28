@@ -36,7 +36,7 @@ Things you may want to cover:
 | last_name     | string | null: false |
 | first_name_kana | string | null: false |
 | last_name_kana     | string | null: false |
-| birthday | datetime | null: false |
+| birthday | date | null: false |
 
 ### Association
 
@@ -54,10 +54,10 @@ Things you may want to cover:
 | name     | string | null: false |
 | category_id    | integer | null: false |
 | description    | text | null: false |
-| item_status | integer | null: false |
-| delivery_charge     | integer | null: false |
+| item_status_id | integer | null: false |
+| delivery_charge_id     | integer | null: false |
 | delivery_area_id   | integer | null: false |
-| delivery_day | integer | null: false |
+| delivery_day_id | integer | null: false |
 | price  | integer | null: false |
 | user  | references | null: false,foreign_key: true |
 
@@ -78,6 +78,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
+- belongs_to :item
 - has_one :address
 
 ## address テーブル
@@ -90,7 +91,7 @@ Things you may want to cover:
 | municipality    | string | null: false |
 | street_number | string     | null: false              |
 | building_name    | string |    |
-| phonenumber    | integer | null: false |
+| phonenumber    | string | null: false |
 
 
 ### Association
