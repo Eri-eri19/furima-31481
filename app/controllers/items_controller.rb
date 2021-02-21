@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  before_action :find_item, only: %i[show edit update destroy]
-  before_action :move_to_index, except: %i[index show new create]
+  # before_action :authenticate_user!, only: [:new]
+  # before_action :find_item, only: %i[show edit update destroy]
+  # before_action :move_to_index, except: %i[index show new create]
 
   # def index
   # end
