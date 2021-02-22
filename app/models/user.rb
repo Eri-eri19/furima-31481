@@ -11,13 +11,13 @@ class User < ApplicationRecord
 
     NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
     NAME_MESSAGE2 = '全角カタカナのみで入力して下さい'.freeze
-    validates :lastnamekana, :firstnamekana, :birthday, format: { with: NAME_KANA_REGEX, message: NAME_MESSAGE2 }
+    validates :lastnamekana, :firstnamekana, format: { with: NAME_KANA_REGEX, message: NAME_MESSAGE2 }
     
   end
     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
     validates :password, format: { with: PASSWORD_REGEX }, length: { minimum: 6 }
 
-    validates :nickname, presence: true
+    validates :nickname, :birthday, presence: true
 end
 
 
