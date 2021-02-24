@@ -17,6 +17,8 @@ class Item < ApplicationRecord
 
    #ジャンルの選択が「--」の時は保存できないようにする
    validates :genre_id, numericality: { other_than: 1 } 
+   # ActiveStrage画像ファイルアソシエーション
+   has_one_attached :image
 
 end
 
