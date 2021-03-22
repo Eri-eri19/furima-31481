@@ -1,13 +1,18 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  before_action :find_item, only: %i[show edit update destroy]
-  before_action :move_to_index, except: %i[index show new create]
-
+  # before_action :authenticate_user!, only: [:new]
+  # before_action :find_items, only: %i[show edit update destroy]
+  # before_action :move_to_index, except: %i[index show new create]
+  before_action :authenticate_user!, except: [:index]
+  
   def index
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
-    @items = Item.new
+    @item = Item.new
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 
   def create
@@ -20,12 +25,12 @@ class ItemsController < ApplicationController
   end
 
   # def destroy
-  #   tweet = Tweet.find(params[:id])
-  #   tweet.destroy
+  #   item = Item.find(params[:id])
+  #   item.destroy
   # end
 
   # def edit
-  #   redirect_to root_path unless @item.order.nil?
+  #   redirect_to root_path unless @item.record.nil?
   # end
 
   # def update
@@ -41,7 +46,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:item_name, :description, :category_id, :status_id, :money_type_id, :area_id, :send_day_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :description, :category_id, :item_status_id, :delivery_charge_id, :delivery_area_id, :delivery_day_id, :price, :image).merge(user_id: current_user.id)
   end
 
   # def find_item
