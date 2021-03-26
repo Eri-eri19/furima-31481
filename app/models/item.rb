@@ -1,9 +1,10 @@
 class Item < ApplicationRecord
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :price, presence: true
-  validates :image, presence: true
-  
+  with_options presence: true do
+  validates :name
+  validates :description
+  validates :price
+  validates :image
+  end
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :delivery_charge
   belongs_to :category
