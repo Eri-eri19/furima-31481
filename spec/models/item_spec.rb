@@ -30,7 +30,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
-    
+
       it 'imageが空では保存できないこと' do
         @item.image = nil
         @item.valid?
@@ -68,7 +68,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'Delivery_area がなければ登録できないこと' do
-        @item.delivery_area_id  = ''
+        @item.delivery_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery area is not a number')
       end
@@ -126,7 +126,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
-
     end
   end
 end
