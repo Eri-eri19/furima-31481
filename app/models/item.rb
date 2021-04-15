@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :delivery_charge
   belongs_to :category
-  belongs_to :area
+  belongs_to :delivery_area
   belongs_to :delivery_day
   belongs_to :item_status
 
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
   # ActiveStrage画像ファイルアソシエーション
   has_one_attached :image
   belongs_to :user
-  #  has_one :record
+  has_one :record
 
   PRICE_REGEX = /\A[0-9]+\z/.freeze
   PRICE_MESSAGE = '半角数字のみで入力して下さい'.freeze

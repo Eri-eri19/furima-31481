@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  # before_action :find_items, only: %i[show edit update destroy]
-  # before_action :move_to_index, except: %i[index show new create]
-  before_action :authenticate_user!, only: [:new, :create]
+  # before_action :move_to_index,  only: [:edit]
+  before_action :authenticate_user!, only: [:new, :create,:show]
+  before_action :item_for_params, only: [:show]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -47,13 +47,12 @@ class ItemsController < ApplicationController
                                  :delivery_day_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  # def find_item
-  #   @item = Item.find(params[:id])
+  def item_for_params
+    @item = Item.find(params[:id])
+  end
+
+  # def move_to_index
+  #   redirect_to action: :index if current_user.id != @item.user_id || @item.record.present?
   # end
 
-  #   def move_to_index
-  #     unless user_signed_in?
-  #       redirect_to action: :index
-  #     end
-  #   end
 end
