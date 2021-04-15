@@ -23,7 +23,6 @@
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
   <% if user_signed_in? %>
     <% unless @item.record.present? %>
       <% if current_user.id == @item.user_id  %>
@@ -31,12 +30,10 @@
           <p class="or-text">or</p>
           <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
      <% else %>   
-          <%= link_to "購入画面に進む", item_record_index_path(@item.id) ,class:"item-red-btn"%>
+          <%= link_to "購入画面に進む", record_index_path(@item.id) ,class:"item-red-btn"%>
       <% end %>
     <% end %>
   <% end %>
-
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
   
     <div class="item-explain-box">
       <span><%= @item.description %></span>
@@ -104,9 +101,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
   <a href="#" class="another-item"><%= @item.category.name  %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
 <%= render "shared/footer" %>
