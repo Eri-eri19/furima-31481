@@ -29,5 +29,5 @@ class Item < ApplicationRecord
   PRICE_REGEX = /\A[0-9]+\z/.freeze
   PRICE_MESSAGE = '半角数字のみで入力して下さい'.freeze
   validates :price, format: { with: PRICE_REGEX, message: PRICE_MESSAGE },
-                    numericality: { only_integer: true, greater_than: 300, less_than: 10_000_000 }
+                    numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end
